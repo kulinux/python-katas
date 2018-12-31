@@ -21,12 +21,16 @@ def naive_price(books):
     return 0
 
 
+
+
+
+
 def price(books):
     diff, res = remove_dif(books)
     total = naive_price(diff)
     while len(res) > 0:
-        total = total + naive_price(diff)
         diff, res = remove_dif(res)
+        total = total + naive_price(diff)
 
     return total
 

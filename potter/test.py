@@ -6,7 +6,7 @@ from potter import price
 
 class TestPotter(unittest.TestCase):
     def test_one(self):
-        self.assertEqual(8, price([0]))
+        self.assertEqual(8 + (8 * 2 * 0.95), price([0, 0, 1]))
 
     def test_basics(self):
         self.assertEqual(0, price([]))
@@ -24,6 +24,11 @@ class TestPotter(unittest.TestCase):
         self.assertEqual(8 * 4 * 0.8, price([0, 1, 2, 4]))
         self.assertEqual(8 * 5 * 0.75, price([0, 1, 2, 3, 4]))
 
+    def test_several_discounts(self):
+        self.assertEqual(8 + (8 * 2 * 0.95), price([0, 0, 1]))
+        self.assertEqual(2 * (8 * 2 * 0.95), price([0, 0, 1, 1]))
+        self.assertEqual((8 * 4 * 0.8) + (8 * 2 * 0.95), price([0, 0, 1, 2, 2, 3]))
+        self.assertEqual(8 + (8 * 5 * 0.75), price([0, 1, 1, 2, 3, 4]))
 
 
 '''
